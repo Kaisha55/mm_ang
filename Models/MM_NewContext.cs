@@ -1,17 +1,17 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
+using IdentityServer4.EntityFramework.Options;
 
 namespace MM_Ang.Models
 {
-    public partial class MM_NewContext : DbContext
+    public partial class MM_NewContext : ApiAuthorizationDbContext<ApplicationUser>
     {
-        public MM_NewContext()
-        {
-        }
-
-        public MM_NewContext(DbContextOptions<MM_NewContext> options)
-            : base(options)
+        public MM_NewContext(
+           DbContextOptions options,
+           IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
         {
         }
 
